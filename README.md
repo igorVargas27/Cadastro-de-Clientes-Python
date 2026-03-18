@@ -1,75 +1,131 @@
+📋 Cadastro de Clientes — CRUD com FastAPI + Fetch API
 
-# Cadastro de Clientes - CRUD com Fetch API e Módulos ES
+Aplicação web completa (frontend + backend) para cadastro de clientes, desenvolvida com foco em Programação Orientada a Objetos, modularização em JavaScript e criação de API REST com FastAPI.
 
-Este projeto é uma aplicação web modularizada que permite **cadastrar**, **listar** e **excluir** clientes,
-utilizando **Programação Orientada a Objetos (POO)**, **Programação Funcional** e **Fetch API**.
+🚀 Funcionalidades
 
----
+✅ Cadastrar cliente (nome e e-mail)
 
-## 🚀 Funcionalidades
-- **Cadastrar Cliente**: insira nome e e-mail e clique em **Salvar**.
-- **Listar Clientes**: os clientes cadastrados são exibidos automaticamente na tela.
-- **Excluir Cliente**: cada item possui um botão **X** que permite remover o cliente da lista e da API.
+📄 Listar clientes automaticamente
 
----
+❌ Excluir cliente
 
-## 🧱 Estrutura do Projeto
+🔄 Atualização dinâmica da interface (sem recarregar a página)
 
-```
+🧱 Estrutura do Projeto
 /index.html       → Interface principal
 /style.css        → Estilo da página
 /js/
- ├── classes.js   → Define a classe Usuario (POO com campos privados)
- ├── utils.js     → Funções auxiliares puras (criação e renderização de elementos)
- └── app.js       → Controlador principal (Fetch API, eventos e integração)
-```
+ ├── classes.js   → Classe Usuario (POO com encapsulamento)
+ ├── utils.js     → Funções auxiliares (renderização e criação de elementos)
+ └── app.js       → Integração com API (Fetch + eventos)
 
----
+/app.py           → API REST com FastAPI
+⚙️ Tecnologias Utilizadas
 
-## ⚙️ Tecnologias Utilizadas
-- **HTML5** – Estrutura da aplicação.
-- **CSS3** – Estilização básica e responsiva.
-- **JavaScript (ES Modules)** – Organização do código em módulos.
-- **Fetch API** – Consumo da API REST (CrudCrud).
+HTML5 → Estrutura da aplicação
 
----
+CSS3 → Estilização
 
-## 📋 Como Usar
+JavaScript (ES Modules) → Organização modular do frontend
 
-1. Acesse [CrudCrud](https://crudcrud.com/) e gere uma nova URL de API (expira em 24h).
-2. No arquivo **js/app.js**, substitua a linha:
-   ```js
-   const API_URL = "https://crudcrud.com/api/SEU_ID/clientes";
-   ```
-   pelo seu **ID único da API**.
-3. Abra o arquivo `index.html` no navegador.
-4. Preencha **Nome** e **E-mail** e clique em **Salvar**.
-5. Os clientes aparecerão na lista logo abaixo.
+Fetch API → Comunicação com o backend
 
----
+FastAPI → Criação da API REST (backend em Python)
 
-## 🧠 Conceitos Aplicados
+🔗 Integração Frontend + Backend
 
-### 🔹 Programação Orientada a Objetos (POO)
-A classe `Usuario` utiliza **campos privados (#)** e **getters** para garantir encapsulamento e controle de acesso.
+O frontend consome a API através de requisições HTTP:
 
-### 🔹 Programação Funcional
-Funções como `renderizarLista()` e `map()` são usadas para criar e exibir os elementos da lista de forma funcional.
+GET /clientes → lista clientes
 
-### 🔹 Modularização (ES Modules)
-O projeto está dividido em módulos com `import` e `export`, garantindo uma **melhor organização** e **reutilização de código**.
+POST /clientes → cadastra cliente
 
----
+DELETE /clientes/{nome} → remove cliente
 
-## 🧪 Requisitos Atendidos
-✅ Encapsulamento com campos privados  
-✅ Modularização com ES Modules  
-✅ Funções puras e uso de map()  
-✅ Validação de entradas  
-✅ Manipulação moderna do DOM (addEventListener)  
-✅ Atualização dinâmica da interface sem recarregar a página  
+Os dados são manipulados dinamicamente no navegador usando Fetch API + async/await.
 
----
+📋 Como Executar o Projeto
+🔹 1. Instalar dependências do backend
+pip install fastapi uvicorn
+🔹 2. Rodar a API
+uvicorn app:app --reload
 
-## 🧑‍💻 Autor
-Desenvolvido como prática de **POO e integração com APIs REST** utilizando **Fetch API** e **módulos ES6**.
+A API estará disponível em:
+
+http://127.0.0.1:8000
+🔹 3. Abrir o frontend
+
+Abra o arquivo index.html no navegador
+ou
+
+Utilize uma extensão como Live Server (recomendado)
+
+⚠️ Observações
+
+Os dados são armazenados em memória (não persistem ao reiniciar a API)
+
+O identificador do cliente é o nome (pode gerar conflitos em casos reais)
+
+Para projetos maiores, o ideal é utilizar:
+
+banco de dados (SQLite, PostgreSQL)
+
+IDs únicos
+
+🧠 Conceitos Aplicados
+🔹 Programação Orientada a Objetos (POO)
+
+Classe Usuario com encapsulamento (campos privados #)
+
+Separação de responsabilidades
+
+🔹 Programação Funcional
+
+Uso de funções puras para renderização
+
+Manipulação de listas com map
+
+🔹 Modularização (ES Modules)
+
+Código dividido em módulos reutilizáveis (import/export)
+
+🔹 API REST
+
+Criação de endpoints com FastAPI
+
+Comunicação via HTTP (GET, POST, DELETE)
+
+🧪 Boas Práticas Implementadas
+
+✅ Uso de async/await
+
+✅ Separação entre frontend e backend
+
+✅ Manipulação moderna do DOM
+
+✅ Organização modular
+
+✅ Tratamento básico de erros
+
+🚀 Possíveis Melhorias
+
+🔹 Adicionar banco de dados (SQLite)
+
+🔹 Implementar método PUT (atualização)
+
+🔹 Criar IDs únicos para clientes
+
+🔹 Melhorar tratamento de erros no frontend
+
+🔹 Deploy da aplicação
+
+🧑‍💻 Autor
+
+Projeto desenvolvido como prática de:
+
+desenvolvimento fullstack
+
+integração frontend + backend
+
+uso de APIs REST com FastAPI
