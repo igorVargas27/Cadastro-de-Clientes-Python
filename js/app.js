@@ -16,7 +16,7 @@ async function carregarClientes() {
         const dados = await resposta.json();
 
         renderizarLista(dados, lista, cliente =>
-            criarItemCliente(new Usuario(cliente.nome, cliente.email), removerCliente)
+            criarItemCliente(new Usuario(cliente.nome_cliente, cliente.email_cliente), removerCliente)
         );
     }catch (erro){
         console.error("Erro ao carregar clientes:", erro);
@@ -35,8 +35,15 @@ async function adicionarCliente() {
     const novoUsuario = new Usuario(nome, email);
 
     try{
-        await fetch(`${API_URL}?nome=${novoUsuario.nome}&email=${novoUsuario.email}`,{
-            method: "POST"
+        await fetch(API_URL,{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nome_cliente: novoUsuario.nome,
+                email_cliente: novoUsuario.email
+            })
         });
 
         inputNome.value = "";
@@ -48,9 +55,9 @@ async function adicionarCliente() {
     }
 }
 
-async function  removerCliente(nome){
+async function  removerCliente(email){
     try{
-        await fetch(`${API_URL}/${encodeURIComponent(nome)}`,{
+        await fetch(`${API_URL}/${encodeURIComponent(email)}`,{
             method: "DELETE"
         });
 

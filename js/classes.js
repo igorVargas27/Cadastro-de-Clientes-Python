@@ -14,7 +14,4 @@ export class Usuario{
     get email(){
         return this.#email;
     }
-    toHTML(){
-        return `<li><strong>${this.nome}</strong>: ${this.email}</li>`;
-    }
 }
