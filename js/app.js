@@ -1,6 +1,6 @@
 //Modularização (ES Modules)
 import { Usuario } from "./classes.js";
-import { criarItemCliente,renderizarLista } from "./utils.js";
+import { criarItemCliente,renderizarLista, apiFetch } from "./utils.js";
 
 const API_URL = "http://127.0.0.1:8000/clientes";
 const lista = document.getElementById("listaClientes");
@@ -12,10 +12,9 @@ async function carregarClientes() {
     lista.innerHTML = "";
 
     try{
-        const resposta = await fetch(API_URL);
-        const dados = await resposta.json();
+        const dados = await apiFetch(API_URL);
 
-        renderizarLista(dados, lista, cliente =>
+        renderizarLista(dados.clientes, lista, cliente =>
             criarItemCliente(new Usuario(cliente.nome_cliente, cliente.email_cliente), removerCliente)
         );
     }catch (erro){
@@ -35,11 +34,8 @@ async function adicionarCliente() {
     const novoUsuario = new Usuario(nome, email);
 
     try{
-        await fetch(API_URL,{
+        await apiFetch(API_URL,{
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
             body: JSON.stringify({
                 nome_cliente: novoUsuario.nome,
                 email_cliente: novoUsuario.email
@@ -57,7 +53,7 @@ async function adicionarCliente() {
 
 async function  removerCliente(email){
     try{
-        await fetch(`${API_URL}/${encodeURIComponent(email)}`,{
+        await apiFetch(`${API_URL}/${encodeURIComponent(email)}`,{
             method: "DELETE"
         });
 
